@@ -12,6 +12,22 @@
       <%= f.label :description %>
       <%= f.text_area :description, rows: 5 %>
     </div>
+    <div class="control-group">
+      <%= f.label :category_ids, 'Categories' %>
+      <%# Note the use of 'category_ids' (not 'categories' or 'category_id'): %>
+      <%= f.collection_select(:category_ids, Category.all, :id, :name, {}, multiple: true) %>
+
+      <%# <%= f.select(:categories, [ %>
+      <%#   ['programming', 1], %>
+      <%#   ['movies', 2], %>
+      <%#   ['food', 3] %>
+      <%# ]) %1> %>
+
+      <%# <select id="categories" name="categories"> %>
+      <%#   <option value="1">programming</option> %>
+      <%#   <option value="2">movies</option> %>
+      <%# </select> %>
+    </div>
     <br />
     <%= f.submit @post.new_record? ? 'Create Post' : 'Update Post', class: "btn btn-primary" %>
   <% end %>
