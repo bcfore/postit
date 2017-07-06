@@ -17,6 +17,11 @@
       <%# Note the use of 'category_ids' (not 'categories' or 'category_id'): %>
       <%= f.collection_select(:category_ids, Category.all, :id, :name, {}, multiple: true) %>
 
+      <%= f.label "Categories" %>
+      <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
+        <% cb.label(class: "checkbox inline") { cb.check_box(class: "checkbox") + cb.text } %>
+      <% end %>
+
       <%# <%= f.select(:categories, [ %>
       <%#   ['programming', 1], %>
       <%#   ['movies', 2], %>
