@@ -1,0 +1,16 @@
+<%= render 'shared/content_title', title: "Profile: #{@user.username}" %>
+
+<div class="well">
+  <dl class="dl-horizontal">
+    <dt>Username:</dt>
+    <dd><%= @user.username %></dd>
+  </dl>
+</div>
+
+<h5><%= @user.username %>'s Activity</h5>
+
+Posts (<%= @user.posts.count %>)
+<%= render partial: "posts/post", collection: @user.posts %>
+
+Comments (<%= @user.comments.count %>)
+<%= render partial: "comments/comment", collection: @user.comments, locals: { to_show_post: true } %>

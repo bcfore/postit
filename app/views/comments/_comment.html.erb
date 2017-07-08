@@ -1,9 +1,12 @@
 <div class="row">
   <div class="well span8">
     <em>"<%= comment.body %>"</em>
+    <% if local_assigns[:to_show_post] %>
+      on <%= link_to comment.post.title, post_path(comment.post) %>
+    <% end %>
     <br>
     <span class="quiet">by</span>
-    <%= link_to comment.creator.username, '#' %>
+    <%= link_to comment.creator.username, user_path(comment.creator) %>
     <small>at <%= print_datetime(comment.created_at) %></small>
   </div>
 </div>
