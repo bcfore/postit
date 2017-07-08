@@ -1,6 +1,7 @@
 == Getting Started
 
 1. Make sure you have rails version 4. Type "rails -v" to make sure.
+BCF: And make sure you're using Ruby <2.2. I used rbenv to install v2.1.10. (See at bottom.)
 2. From this project directory, do "bundle install --without production"
 3. To start the server "rails server".
 4. Navigate your browser to localhost:3000.
@@ -28,3 +29,17 @@
   - heroku run console
   - heroku help
 
+== rbenv (bcf)
+  - rbenv install -l // lists the available versions
+  - rbenv install 2.1.10 // highest version < 2.2
+  - rbenv local 2.1.10 // switch to 2.1.10 in working directory
+  - rbenv version // check which version of Ruby you're using
+  - rbenv init
+
+A file '.ruby-version' is created in your working directory, with contents: 2.1.10.
+rbenv uses this to parse all Ruby commands.
+
+Note -- Make sure the rbenv init lines in your .bash_profile are there, at the end:
+  - export PATH="$HOME/.rbenv/bin:$PATH"
+  - eval "$(rbenv init -)"
+  - export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"

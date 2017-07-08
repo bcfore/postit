@@ -9,8 +9,17 @@
 
 <h5><%= @user.username %>'s Activity</h5>
 
-Posts (<%= @user.posts.count %>)
-<%= render partial: "posts/post", collection: @user.posts %>
+<ul class='nav nav-tabs'>
+  <li class='<%= 'active' if params[:tab].nil? %>'>
+    <%= link_to "Posts (#{@user.posts.count})", user_path(@user) %>
+  </li>
+  <li class='<%= 'active' if params[:tab] == 'comments' %>'>
+    <%= link_to "Comments (#{@user.comments.count})", user_path(@user, tab: 'comments') %>
+  </li>
+</ul>
 
-Comments (<%= @user.comments.count %>)
-<%= render partial: "comments/comment", collection: @user.comments, locals: { to_show_post: true } %>
+<% if params[:tab].nil? %>
+  <%= render partial: "posts/post", collection: @user.posts %>
+<% elsif params[:tab] == 'comments' %>
+ <%= render partial: "comments/comment", collection: @user.comments, locals: { to_show_post: true } %>
+<% end %>

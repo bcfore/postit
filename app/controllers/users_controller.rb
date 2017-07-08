@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
-  before_action :require_user, except: [:new, :create, :show]
+  before_action :require_same_user, except: [:new, :create, :show]
 
   def new
     @user = User.new
@@ -38,6 +38,21 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user = User.find(params[:id])
+    user = User.find_by id: params[:id]
+
+    if user.nil?
+      flash["error"] = "Unknown user id!"
+      redirect_to root_path
+    else
+      @user = User.find(params[:id])
+    end
+  end
+
+  def require_same_user
+    # unless current_user.id.to_s == params[:id]
+    unless current_user == @user
+      flash["error"] = "You cannot modify another user's profile!"
+      redirect_to root_path
+    end
   end
 end
