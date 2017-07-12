@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
-
   before_action :require_user
+
+  include VoteableController
 
   def create
     @post = Post.find params.require(:post_id)
@@ -16,6 +17,11 @@ class CommentsController < ApplicationController
     else
       render "posts/show"
     end
+  end
+
+  def vote
+    comment = Comment.find(params[:id])
+    create_vote(comment)
   end
 
   private

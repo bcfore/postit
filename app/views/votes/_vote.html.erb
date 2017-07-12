@@ -1,0 +1,21 @@
+<% vote_path = obj.is_a?(Comment) ? method(:vote_post_comment_path) : method(:vote_post_path) %>
+<% args = [ obj, { vote: true } ] %>
+<% if obj.is_a?(Comment) then args.unshift(obj.post) end %>
+
+<div class='span0 well text-center'>
+  <% if logged_in? %>
+    <%= link_to vote_path.call(*args), method: 'post' do %>
+      <i class='icon-arrow-up'></i>
+    <% end %>
+    <br />
+  <% end %>
+  <%= obj.total_votes %> votes
+  <% if logged_in? %>
+    <br />
+    <% args.last[:vote] = false %>
+    <%= link_to vote_path.call(*args), method: 'post' do %>
+      <i class='icon-arrow-down'></i>
+    <% end %>
+  <% end %>
+</div>
+

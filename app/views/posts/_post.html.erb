@@ -1,4 +1,6 @@
 <div class='row'>
+  <%= render 'votes/vote', obj: post %>
+
   <div class='span8 well'>
     <%= render post.categories %>
     <h4><%= link_to post.title, fix_url(post.url) %></h4>

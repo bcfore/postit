@@ -1,9 +1,11 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update]
+  before_action :set_post, only: [:show, :edit, :update, :vote]
   before_action :require_user, except: [:index, :show]
 
+  include VoteableController
+
   def index
-    @posts = Post.all
+    @posts = Post.all.sort_by { |p| p.total_votes }.reverse
   end
 
   def show
@@ -36,6 +38,10 @@ class PostsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def vote
+    create_vote(@post)
   end
 
   private

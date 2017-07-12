@@ -1,6 +1,8 @@
 <%# <% to_show_post ||= false %1> %>
 
 <div class="row">
+  <%= render 'votes/vote', obj: comment %>
+
   <div class="well span8">
     <em>"<%= comment.body %>"</em>
     <% if local_assigns[:to_show_post] %>

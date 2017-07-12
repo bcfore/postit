@@ -1,5 +1,7 @@
 class Post < ActiveRecord::Base
-  # belongs_to :user
+  # has_many :votes, as: :voteable
+  include Voteable
+
   belongs_to :creator, foreign_key: 'user_id', class_name: 'User'
   has_many :comments
   has_many :post_categories
