@@ -38,13 +38,15 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    user = User.find_by id: params[:id]
+    # user = User.find_by id: params[:id]
+    user = User.find_by slug: CGI::escape(params[:id])
 
     if user.nil?
       flash["error"] = "Unknown user id!"
       redirect_to root_path
     else
-      @user = User.find(params[:id])
+      # @user = User.find(params[:id])
+      @user = user
     end
   end
 

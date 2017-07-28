@@ -10,4 +10,8 @@ module ApplicationHelper
       datetime.strftime('%m/%d/%Y %l:%M%P %Z').squeeze(' ')
     end
   end
+
+  def voteable_id_str(voteable)
+    "#{voteable.class.to_s.downcase}_#{voteable.id}_votes"
+  end
 end

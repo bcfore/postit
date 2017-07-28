@@ -4,7 +4,8 @@ class CommentsController < ApplicationController
   include VoteableController
 
   def create
-    @post = Post.find params.require(:post_id)
+    # @post = Post.find params.require(:post_id)
+    @post = Post.find_by slug: CGI::escape(params.require(:post_id))
     @comment = Comment.new(comment_params)
     @comment.post = @post
     # @comment = @post.comments.build(comment_params) # equiv to the two above lines

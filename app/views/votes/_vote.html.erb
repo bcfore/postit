@@ -4,16 +4,16 @@
 
 <div class='span0 well text-center'>
   <% if logged_in? %>
-    <%= link_to vote_path.call(*args), method: 'post' do %>
+    <%= link_to vote_path.call(*args), method: 'post', remote: true do %>
       <i class='icon-arrow-up'></i>
     <% end %>
     <br />
   <% end %>
-  <%= obj.total_votes %> votes
+  <span id="<%= voteable_id_str(obj) %>"><%= obj.total_votes %> votes</span>
   <% if logged_in? %>
     <br />
     <% args.last[:vote] = false %>
-    <%= link_to vote_path.call(*args), method: 'post' do %>
+    <%= link_to vote_path.call(*args), method: 'post', remote: true do %>
       <i class='icon-arrow-down'></i>
     <% end %>
   <% end %>

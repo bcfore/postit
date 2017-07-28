@@ -1,0 +1,5 @@
+<% if @vote.valid? %>
+  $('#<%= voteable_id_str(@vote.voteable) %>').html('<%= @vote.voteable.total_votes %> votes');
+<% else %>
+    alert("You can only vote on a <%= @vote.voteable_type.downcase %> once.");
+<% end %>
