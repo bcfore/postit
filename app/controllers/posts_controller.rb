@@ -52,7 +52,6 @@ class PostsController < ApplicationController
 
   def set_post
     # @post = Post.find(params[:id])
-    # @post = Post.find_by(slug: params[:id])
-    @post = Post.find_by(slug: CGI::escape(params[:id]))
+    @post = Post.find_by slug: params[:id]
   end
 end

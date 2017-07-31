@@ -6,7 +6,9 @@ class Category < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
 
-  def slug_input
-    self.name
-  end
+  sluggable_column :name
+
+  # def slug_input
+  #   self.name
+  # end
 end

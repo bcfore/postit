@@ -21,6 +21,8 @@ module PostitTemplate
     # config.i18n.default_locale = :de
 
     # Tealeaf note: Bootstrap sass gem addition
+    # require 'voteable-nolly'
+
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
   end
 end

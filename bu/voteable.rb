@@ -1,3 +1,6 @@
+# Originally I had this in 'app/models/concerns'
+# but then I created a Voteable gem, pushed to rubygems.org.
+#
 module Voteable
   extend ActiveSupport::Concern
 

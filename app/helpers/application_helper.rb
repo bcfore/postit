@@ -12,7 +12,8 @@ module ApplicationHelper
   end
 
   def voteable_id_str(voteable)
-    voteable_id = voteable.respond_to?(:slug, true) ? voteable.slug : voteable.id
-    "#{voteable.class.to_s.downcase}_#{voteable_id}_votes"
+    # voteable_id = voteable.respond_to?(:slug, true) ? voteable.slug : voteable.id
+    # "#{voteable.class.to_s.downcase}_#{voteable_id}_votes"
+    "#{voteable.class.to_s.downcase}_#{voteable.to_param}_votes"
   end
 end

@@ -39,7 +39,7 @@ class UsersController < ApplicationController
 
   def set_user
     # user = User.find_by id: params[:id]
-    user = User.find_by slug: CGI::escape(params[:id])
+    user = User.find_by slug: params[:id]
 
     if user.nil?
       flash["error"] = "Unknown user id!"

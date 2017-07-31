@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
 
   def show
     # @category = Category.find params[:id]
-    @category = Category.find_by slug: CGI::escape(params[:id])
+    @category = Category.find_by slug: params[:id]
   end
 
   def new

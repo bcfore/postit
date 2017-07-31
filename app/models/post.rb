@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
-  # has_many :votes, as: :voteable
-  include Voteable
+  # include Voteable
+  include VoteableNolly
   include Slugable
 
   belongs_to :creator, foreign_key: 'user_id', class_name: 'User'
@@ -12,7 +12,9 @@ class Post < ActiveRecord::Base
   validates :url, presence: true, uniqueness: true
   validates :description, presence: true
 
-  def slug_input
-    self.title
-  end
+  sluggable_column :title
+
+  # def slug_input
+  #   self.title
+  # end
 end
