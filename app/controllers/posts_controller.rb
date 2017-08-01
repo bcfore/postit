@@ -1,15 +1,29 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :vote]
   before_action :require_user, except: [:index, :show]
+  before_action :require_editor, only: [:edit, :update]
 
   include VoteableController
 
   def index
     @posts = Post.all.sort_by { |p| p.total_votes }.reverse
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @posts }
+      format.xml { render xml: @posts }
+    end
   end
 
   def show
     @comment = Comment.new
+    @is_editable = logged_in? && can_edit?
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @post}
+      format.xml { render xml: @post}
+    end
   end
 
   def new
@@ -53,5 +67,13 @@ class PostsController < ApplicationController
   def set_post
     # @post = Post.find(params[:id])
     @post = Post.find_by slug: params[:id]
+  end
+
+  def can_edit?
+    current_user == @post.creator || current_user.admin?
+  end
+
+  def require_editor
+    access_denied unless can_edit?
   end
 end

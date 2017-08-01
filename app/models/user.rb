@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 
   sluggable_column :username
 
-  # def slug_input
-  #   self.username
-  # end
+  def admin?
+    self.role == 'admin'
+  end
 end

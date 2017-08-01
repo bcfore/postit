@@ -14,7 +14,17 @@ class Post < ActiveRecord::Base
 
   sluggable_column :title
 
-  # def slug_input
-  #   self.title
+  API_KEYS = [ :title, :url, :description, :created_at, :updated_at ]
+
+  # def to_xml(options)
+  #   self.slice(*API_KEYS).to_xml(options)
   # end
+
+  def to_xml(options = {})
+    super(options.merge({ only: API_KEYS }))
+  end
+
+  def as_json(options = {})
+    super(options.merge({ only: API_KEYS }))
+  end
 end
