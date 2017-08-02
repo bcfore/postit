@@ -6,7 +6,9 @@ class PostsController < ApplicationController
   include VoteableController
 
   def index
-    @posts = Post.all.sort_by { |p| p.total_votes }.reverse
+    # @posts = Post.all.sort_by { |p| p.total_votes }.reverse
+    @posts = Post.offset(params[:offset]).limit(Post::PER_PAGE)
+    @pages = (Post.all.size.to_f / Post::PER_PAGE).ceil
 
     respond_to do |format|
       format.html

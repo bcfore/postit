@@ -1,2 +1,10 @@
 <%= render 'shared/content_title', title: 'All Posts' %>
 <%= render @posts %>
+
+<% @pages.times do |n| %>
+  <% if (n.zero? && params[:offset].nil?) || params[:offset] == (n * Post::PER_PAGE).to_s %>
+    <%= "| Page #{n + 1}" %>
+  <% else %>
+    <%= link_to "| Page #{n + 1}", posts_path(offset: n * Post::PER_PAGE) %>
+  <% end %>
+<% end %>

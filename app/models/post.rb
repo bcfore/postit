@@ -1,7 +1,10 @@
 class Post < ActiveRecord::Base
-  # include Voteable
   include VoteableNolly
-  include Slugable
+  include SluggableNolly
+
+  PER_PAGE = 3
+
+  default_scope { order('created_at ASC') }
 
   belongs_to :creator, foreign_key: 'user_id', class_name: 'User'
   has_many :comments

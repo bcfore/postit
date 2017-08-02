@@ -14,7 +14,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', '~> 3.0.0'
 
-gem 'voteable_nolly'
+gem 'voteable_nolly', path: 'own_gems/voteable_gem'
+gem 'sluggable_nolly', path: 'own_gems/sluggable_gem'
 
 group :doc do
   gem 'sdoc', require: false
